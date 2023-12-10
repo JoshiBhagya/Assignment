@@ -1,0 +1,60 @@
+# Architecture.txt
+
+## Overview
+The API system is designed to manage candidate votes using local variables without a database. It includes four main APIs: `entercandidate`, `castvote`, `countvote`, `listvote`, and `getwinner`. Unit testing is implemented to ensure the functionality of each API.
+
+## Components
+
+### 1. entercandidate
+- **Description**: Takes a candidate name as a parameter and initializes a vote count to 0.
+- **Method**: POST
+- **Endpoint**: `/entercandidate`
+- **Parameters**:
+  - `name` (string): Candidate name
+- **Response**: 
+  - 200 OK: Candidate entered successfully
+  - 400 Bad Request: Invalid parameters
+
+### 2. castvote
+- **Description**: Takes a candidate name as a parameter and increments the vote count. Votes only for valid candidates.
+- **Method**: POST
+- **Endpoint**: `/castvote`
+- **Parameters**:
+  - `name` (string): Candidate name
+- **Response**: 
+  - 200 OK: Vote cast successfully
+  - 400 Bad Request: Invalid parameters or invalid candidate name
+
+### 3. countvote
+- **Description**: Takes a candidate name as a parameter and returns the latest vote count.
+- **Method**: GET
+- **Endpoint**: `/countvote`
+- **Parameters**:
+  - `name` (string): Candidate name
+- **Response**: 
+  - 200 OK: Vote count retrieved successfully
+  - 400 Bad Request: Invalid parameters or invalid candidate name
+
+### 4. listvote
+- **Description**: Returns all names and vote counts in JSON format.
+- **Method**: GET
+- **Endpoint**: `/listvote`
+- **Response**: 
+  - 200 OK: List of candidates and vote counts in JSON format
+
+### 5. getwinner
+- **Description**: Returns the name of the candidate who got the largest number of votes.
+- **Method**: GET
+- **Endpoint**: `/getwinner`
+- **Response**: 
+  - 200 OK: Winner's name retrieved successfully
+
+## Unit Testing
+Unit testing is implemented to ensure the functionality of each API. The tests cover scenarios such as entering candidates, casting votes, retrieving vote counts, listing votes, and determining the winner.
+
+## Usage
+1. Run the script on a server.
+2. Users can make HTTP requests to the defined endpoints using tools like cURL or through a web interface.
+
+## Dependencies
+- Flask: The web framework used for creating the APIs.
